@@ -1,24 +1,21 @@
 // user.entity.ts
 
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Member {
     @PrimaryGeneratedColumn()
-    id: string;
+    seq: number;
 
     @Column()
-    firstName: string;
+    userName: string;
+
+    @PrimaryColumn()
+    userId: string;
 
     @Column()
-    lastName: string;
+    password: string;
 
-    @Column({ default: true })
-    isActive: boolean;
-
-    @CreateDateColumn()
-    createdAt: Date;
-
-    @UpdateDateColumn()
-    updatedAt: Date;
+    @Column()
+    role: string;
 }

@@ -7,6 +7,7 @@ import { Member } from './members/member.entity';
 import { MembersService } from './members/members.service';
 import { MembersModule } from './members/members.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 import jwtConfig from './config/jwt.config';
 
 @Module({
@@ -21,14 +22,11 @@ import jwtConfig from './config/jwt.config';
       entities: [Member],
       synchronize: true,
     }),
-    ConfigModule.forRoot({
-      load: [jwtConfig],
-      isGlobal: true,
-    }),
-    MembersModule
+    MembersModule,
+    AuthModule
   ],
   controllers: [AppController],
-  providers: [AppService, MembersService],
+  providers: [AppService],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) { }
